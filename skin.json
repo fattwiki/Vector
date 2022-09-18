@@ -424,7 +424,7 @@
 			"value": true
 		},
 		"VectorDefaultSidebarVisibleForAnonymousUser": {
-			"value": false
+			"value": true
 		},
 		"VectorLanguageInHeader": {
 			"value": {
