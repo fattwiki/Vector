@@ -70,7 +70,7 @@
 		/* @embed */
 		background-image: url( images/chevronHorizontal-ltr.svg );
 
-		#mw-sidebar-checkbox:not( :checked ) ~ .mw-header & {
+		#mw-sidebar-checkbox:not( :checked ) ~ .header-container .mw-header & {
 			/* @embed */
 			background-image: url( images/menu.svg );
 		}
@@ -85,7 +85,7 @@
 
 // Use the MediaWiki checkbox hack class from checkboxHack.less. This class exists on the
 // checkbox input for the menu panel.
-#mw-sidebar-checkbox:not( :checked ) ~ .mw-workspace-container .mw-sidebar {
+#mw-sidebar-checkbox:not( :checked ) ~ .mw-page-container .mw-workspace-container .mw-sidebar {
 	// Turn off presentation so that screen readers get the same effect as visually hiding.
 	// Visibility and opacity can be animated. If animation is unnecessary, use `display: none`
 	// instead to avoid hidden rendering.
