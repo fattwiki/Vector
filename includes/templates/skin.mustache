@@ -32,10 +32,8 @@
 	object data-portlets-sidebar. See Sidebar.mustache for documentation.
 	object data-footer for footer template partial. see Footer.mustache for documentation.
 }}
-<div class="mw-page-container">
-	<a class="mw-jump-link" href="#content">{{msg-vector-jumptocontent}}</a>
-	<div class="mw-page-container-inner {{#data-toc}} vector-toc-visible{{/data-toc}}">
 
+<div class="{{#data-toc}}vector-toc-visible{{/data-toc}}">
 <input
 	type="checkbox"
 	id="mw-sidebar-checkbox"
@@ -44,14 +42,18 @@
 
 {{>Header}}
 
+<div class="mw-page-container">
+	<a class="mw-jump-link" href="#content">{{msg-vector-jumptocontent}}</a>
+	<div class="mw-page-container-inner">
+
 <div class="mw-workspace-container">
-	{{>Navigation}}
+	{{#data-portlets-sidebar}}{{>Sidebar}}{{/data-portlets-sidebar}}
 	<div class="mw-table-of-contents-container mw-sticky-header-element">
 		{{#data-toc}}{{>TableOfContents}}{{/data-toc}}
 	</div>
 	<div class="mw-content-container">
 {{! `role` is unnecessary but kept to support selectors in any gadgets or user styles. }}
-<main id="content" class="mw-body" role="main">
+<main class="mw-body" role="main">
 	<a id="top"></a>
 	<div id="siteNotice">{{{html-site-notice}}}</div>
 
@@ -73,15 +75,18 @@
 	</header>
 	{{/is-language-in-content}}
 
+	{{>Navigation}}
 	<div id="bodyContent" class="vector-body">
-		{{^is-language-in-content}}
-			{{#is-article}}<div id="siteSub" class="noprint">{{msg-tagline}}</div>{{/is-article}}
-		{{/is-language-in-content}}
-		<div id="contentSub"{{{html-user-language-attributes}}}>{{{html-subtitle}}}</div>
-		<div id="contentSub2">{{{html-undelete-link}}}</div>
-		{{{html-user-message}}}
-		{{{html-body-content}}}
-		{{{html-categories}}}
+		<div id="content">
+			{{^is-language-in-content}}
+				{{#is-article}}<div id="siteSub" class="noprint">{{msg-tagline}}</div>{{/is-article}}
+			{{/is-language-in-content}}
+			<div id="contentSub"{{{html-user-language-attributes}}}>{{{html-subtitle}}}</div>
+			<div id="contentSub2">{{{html-undelete-link}}}</div>
+			{{{html-user-message}}}
+			{{{html-body-content}}}
+			{{{html-categories}}}
+		</div>
 	</div>
 
 	{{#is-language-in-content-bottom}}
@@ -90,14 +95,17 @@
 
 </main>
 {{{html-after-content}}}
+
+{{#data-footer}}{{>Footer}}{{/data-footer}}
 	</div> {{! END mw-content-container }}
 </div> {{! END mw-workspace-container }}
 
-<div class="mw-workspace-container mw-footer-container">
+<!-- <div class="mw-workspace-container mw-footer-container">
 	<div class="mw-content-container">
-		{{#data-footer}}{{>Footer}}{{/data-footer}}
+		
 	</div>
-</div>
+</div> -->
 	</div> {{! END mw-page-container-inner }}
 </div> {{! END mw-page-container }}
+</div>
 {{#data-vector-sticky-header}}{{>StickyHeader}}{{/data-vector-sticky-header}}
